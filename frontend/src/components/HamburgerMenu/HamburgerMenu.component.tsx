@@ -1,9 +1,29 @@
 import { Box, Button, useTheme } from '@mui/material';
-import { StyledMenuLink } from './HamburderMenu.styles';
+import { keyframes } from '@mui/system';
 
-const HamburgerMenu = () => {
+import { StyledMenuLink } from './HamburderMenu.styles';
+import { HamburgerMenuPropsType } from './HamburgerMenu.types';
+
+const HamburgerMenu: React.FC<HamburgerMenuPropsType> = ({ isMenuOpen }) => {
   const theme = useTheme();
 
+  const slideIn = keyframes`
+  from {
+    transform: translateY(-150%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+`;
+
+  const slideOut = keyframes`
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-150%);
+  }
+`;
   return (
     <Box
       height="100%"
@@ -14,6 +34,9 @@ const HamburgerMenu = () => {
         display: 'flex',
         flexDirection: 'column',
         gap: '20px',
+        animation: isMenuOpen
+          ? `${slideIn} 1s forwards`
+          : `${slideOut} 1s forwards`,
       }}
     >
       <Box

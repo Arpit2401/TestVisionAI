@@ -1,19 +1,34 @@
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+
 import { Box, Button, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 import logo from '../../assets/TestVisionAILogo.png';
 import { colorPalette } from '../../constants';
 import HamburgerMenu from '../../components/HamburgerMenu/HamburgerMenu.component';
 import NavBar from '../../components/NavBar/NavBar.component';
-import { Link } from 'react-router-dom';
 
 const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const handleMenuTogle = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
-    <Box height="100vh" maxHeight="100vh" sx={{ overflow: 'hidden' }}>
+    <Box
+      sx={
+        isMenuOpen
+          ? { overflow: 'hidden', height: '100vh', maxHeight: '100vh' }
+          : {}
+      }
+    >
       <Box
         display="flex"
         alignItems="center"
@@ -64,15 +79,32 @@ const Header = () => {
             </Box>
           </Link>
           {isMobile ? (
-            <MenuIcon
-              sx={{
-                color: 'white',
-                cursor: 'pointer',
-                '&:hover, &:focus': {
-                  color: 'primary.main',
-                },
-              }}
-            />
+            <>
+              {!isMenuOpen && (
+                <MenuIcon
+                  onClick={() => handleMenuTogle()}
+                  sx={{
+                    color: 'white',
+                    cursor: 'pointer',
+                    '&:hover, &:focus': {
+                      color: 'primary.main',
+                    },
+                  }}
+                />
+              )}
+              {isMenuOpen && (
+                <CloseIcon
+                  onClick={() => handleMenuTogle()}
+                  sx={{
+                    color: 'white',
+                    cursor: 'pointer',
+                    '&:hover, &:focus': {
+                      color: 'primary.main',
+                    },
+                  }}
+                />
+              )}
+            </>
           ) : (
             <NavBar />
           )}
@@ -94,7 +126,7 @@ const Header = () => {
           )}
         </Box>
       </Box>
-      <HamburgerMenu />
+      {isMobile && <HamburgerMenu isMenuOpen={isMenuOpen} />}
     </Box>
   );
 };
