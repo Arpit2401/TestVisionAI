@@ -1,59 +1,100 @@
-import { Box } from '@mui/material';
+import { Box, Button, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import logo from '../../assets/TestVisionAILogo.png';
 import { colorPalette } from '../../constants';
+import HamburgerMenu from '../../components/HamburgerMenu/HamburgerMenu.component';
+import NavBar from '../../components/NavBar/NavBar.component';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      sx={{
-        background: colorPalette.blue[500],
-        padding: '16px 20px',
-        [theme.breakpoints.up('sm')]: {
-          padding: '24px 32px',
-        },
-        [theme.breakpoints.up('md')]: {
-          padding: '24px 48px',
-        },
-        [theme.breakpoints.up('lg')]: {
-          padding: '24px 52px',
-        },
-      }}
-    >
+    <Box height="100vh" maxHeight="100vh" sx={{ overflow: 'hidden' }}>
       <Box
-        maxWidth="1440px"
-        width="100%"
         display="flex"
         alignItems="center"
-        justifyContent="space-between"
+        justifyContent="center"
+        position="sticky"
+        top={0}
+        zIndex="9999"
+        sx={{
+          background: colorPalette.blue[500],
+          padding: '16px 20px',
+          [theme.breakpoints.up('sm')]: {
+            padding: '16px 32px',
+          },
+          [theme.breakpoints.up('md')]: {
+            padding: '16px 48px',
+          },
+          [theme.breakpoints.up('lg')]: {
+            padding: '16px 52px',
+          },
+        }}
       >
         <Box
-          sx={{
-            maxWidth: '10rem',
-            [theme.breakpoints.up('sm')]: {
-              maxWidth: '12rem',
-            },
-            [theme.breakpoints.up('md')]: {
-              maxWidth: '15rem',
-            },
-          }}
+          maxWidth="1440px"
+          width="100%"
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
         >
-          <Box
-            component="img"
-            width="100%"
-            src={logo}
-            alt="Test Vision AI Logo"
-            sx={{ borderRadius: '4px' }}
-          />
+          <Link to="/">
+            <Box
+              sx={{
+                maxWidth: '10rem',
+                [theme.breakpoints.up('sm')]: {
+                  maxWidth: '12rem',
+                },
+                [theme.breakpoints.up('md')]: {
+                  maxWidth: '15rem',
+                },
+              }}
+            >
+              <Box
+                component="img"
+                width="100%"
+                src={logo}
+                alt="Test Vision AI Logo"
+                sx={{ borderRadius: '4px' }}
+              />
+            </Box>
+          </Link>
+          {isMobile ? (
+            <MenuIcon
+              sx={{
+                color: 'white',
+                cursor: 'pointer',
+                '&:hover, &:focus': {
+                  color: 'primary.main',
+                },
+              }}
+            />
+          ) : (
+            <NavBar />
+          )}
+          {!isMobile && (
+            <Button
+              sx={{
+                width: '100%',
+                maxWidth: '150px',
+                background: theme.palette.primary.main,
+                color: 'white',
+                '&:active, &:hover, &:focus': {
+                  background: 'white',
+                  color: theme.palette.secondary.main,
+                },
+              }}
+            >
+              Log In
+            </Button>
+          )}
         </Box>
-        {/* Render Menu here */}
-        <></>
       </Box>
+      <HamburgerMenu />
     </Box>
   );
 };
