@@ -126,7 +126,12 @@ const Header = () => {
           )}
         </Box>
       </Box>
-      {isMobile && <HamburgerMenu isMenuOpen={isMenuOpen} />}
+      {isMobile && (
+        <HamburgerMenu
+          isMenuOpen={isMenuOpen}
+          closeMenu={() => setIsMenuOpen(false)}
+        />
+      )}
     </Box>
   );
 };

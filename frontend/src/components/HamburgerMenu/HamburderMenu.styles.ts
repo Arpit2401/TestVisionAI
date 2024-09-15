@@ -1,10 +1,11 @@
+import { Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 
 export const StyledMenuLink = styled(Link)(({ theme }) => ({
   padding: '20px',
   color: 'white',
   width: '100%',
+  textDecoration: 'none',
   fontWeight: 'bold',
   borderBottom: `1px solid ${theme.palette.grey[500]}`,
   '&:hover, &:active, &:focus': {

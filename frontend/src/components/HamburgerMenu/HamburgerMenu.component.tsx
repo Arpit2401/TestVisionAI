@@ -4,7 +4,10 @@ import { keyframes } from '@mui/system';
 import { StyledMenuLink } from './HamburderMenu.styles';
 import { HamburgerMenuPropsType } from './HamburgerMenu.types';
 
-const HamburgerMenu: React.FC<HamburgerMenuPropsType> = ({ isMenuOpen }) => {
+const HamburgerMenu: React.FC<HamburgerMenuPropsType> = ({
+  isMenuOpen,
+  closeMenu,
+}) => {
   const theme = useTheme();
 
   const slideIn = keyframes`
@@ -28,10 +31,10 @@ const HamburgerMenu: React.FC<HamburgerMenuPropsType> = ({ isMenuOpen }) => {
     <Box
       height="100%"
       sx={{
+        display: isMenuOpen ? 'flex' : 'none',
         bottom: 0,
         overflow: 'auto',
         background: theme.palette.primary.main,
-        display: 'flex',
         flexDirection: 'column',
         gap: '20px',
         animation: isMenuOpen
@@ -46,23 +49,24 @@ const HamburgerMenu: React.FC<HamburgerMenuPropsType> = ({ isMenuOpen }) => {
           alignItems: 'center',
         }}
       >
-        <StyledMenuLink to="/">
+        <StyledMenuLink href="/" onClick={() => closeMenu()}>
           <Box>Home</Box>
         </StyledMenuLink>
-        <StyledMenuLink to="/">
+        <StyledMenuLink href="#features" onClick={() => closeMenu()}>
           <Box>Features</Box>
         </StyledMenuLink>
-        <StyledMenuLink to="/">
+        <StyledMenuLink href="#usage-guide" onClick={() => closeMenu()}>
           <Box>Usage Guide</Box>
         </StyledMenuLink>
-        <StyledMenuLink to="/">
+        <StyledMenuLink href="#team" onClick={() => closeMenu()}>
           <Box>Team</Box>
         </StyledMenuLink>
-        <StyledMenuLink to="/">
+        <StyledMenuLink href="#contact" onClick={() => closeMenu()}>
           <Box>Contact</Box>
         </StyledMenuLink>
       </Box>
       <Button
+        onClick={() => closeMenu()}
         sx={{
           maxWidth: '150px',
           margin: '20px',

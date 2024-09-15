@@ -11,19 +11,19 @@ const NavBar = () => {
         alignItems: 'center',
       }}
     >
-      <StyledMenuLink className="active" to="/">
+      <StyledMenuLink className="active" href="/">
         <Box>Home</Box>
       </StyledMenuLink>
-      <StyledMenuLink to="/">
+      <StyledMenuLink href="#features">
         <Box>Features</Box>
       </StyledMenuLink>
-      <StyledMenuLink to="/">
+      <StyledMenuLink href="#usage-guide">
         <Box>Usage Guide</Box>
       </StyledMenuLink>
-      <StyledMenuLink to="/">
+      <StyledMenuLink href="#team">
         <Box>Team</Box>
       </StyledMenuLink>
-      <StyledMenuLink to="/">
+      <StyledMenuLink href="#contact">
         <Box>Contact</Box>
       </StyledMenuLink>
     </Box>
