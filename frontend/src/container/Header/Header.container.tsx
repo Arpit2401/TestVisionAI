@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 import logo from '../../assets/TestVisionAILogo.png';
-import { colorPalette } from '../../constants';
 import HamburgerMenu from '../../components/HamburgerMenu/HamburgerMenu.component';
 import NavBar from '../../components/NavBar/NavBar.component';
 
@@ -37,7 +36,7 @@ const Header = () => {
         top={0}
         zIndex="9999"
         sx={{
-          background: colorPalette.blue[500],
+          background: theme.palette.secondary.main,
           padding: '16px 20px',
           [theme.breakpoints.up('sm')]: {
             padding: '16px 32px',
