@@ -23,7 +23,9 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
       }}
     >
       <Icon fontSize="large" />
-      <Typography fontWeight="bold">{featureText}</Typography>
+      <Typography fontWeight="bold" fontSize="2rem">
+        {featureText}
+      </Typography>
     </Box>
   );
 };
